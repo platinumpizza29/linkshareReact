@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect, useState, useMemo } from "react";
+import { useLocation } from "react-router-dom";
 import "./HomePage.css";
 
 import {
@@ -26,26 +26,16 @@ export default function HomePage() {
   const [getLink, setLink] = useState("");
   const [getCategory, setCategory] = useState(null);
   const [open, setOpen] = useState(false);
-  const [filter, setFilter] = useState("");
+  // const [filter, setFilter] = useState("");
 
   //initialize variables
-  const cookie = new Cookies();
+  const cookie = useMemo(() => Cookies(), []);
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const email = location.state.email;
 
   //custom methods
-  const getPosts = async () => {
-    var jwt_cookie = cookie.get("auth-token");
-    var uri = "http://192.168.1.137:4000/posts/allPosts";
-    var headers = {
-      "auth-token": jwt_cookie,
-    };
-    var response = await axios.get(uri, { headers: headers });
-    setPostList(response.data);
-    console.log(response.data);
-  };
 
   var submitNewPost = async () => {
     var uri = "http://192.168.1.137:4000/posts/addPost";
@@ -65,7 +55,6 @@ export default function HomePage() {
       { headers: headers }
     );
     if (response.status === 200) {
-      getPosts();
       setCategory(null);
     }
     if (response.status === 500) {
@@ -80,22 +69,31 @@ export default function HomePage() {
     setOpen(false);
   };
 
-  const handleFilter = (childValue) => {
-    setFilter(childValue);
-    console.log(childValue);
-  };
+  // const handleFilter = (childValue) => {
+  //   setFilter(childValue);
+  //   console.log(childValue);
+  // };
 
   //default methods
   useEffect(() => {
+    var jwt_cookie = cookie.get("auth-token");
+    const getPosts = async () => {
+      var uri = "http://192.168.1.137:4000/posts/allPosts";
+      var headers = {
+        "auth-token": jwt_cookie,
+      };
+      var response = await axios.get(uri, { headers: headers });
+      setPostList(response.data);
+      console.log(response.data);
+    };
     getPosts();
-
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [cookie]);
 
   //custom Data
   const items = [
@@ -154,7 +152,7 @@ export default function HomePage() {
               onClose={onClose}
               open={open}
             >
-              <Col1 onChildValue={handleFilter} />
+              <Col1 />
             </Drawer>
             <h1 id="heading">My Feed</h1>
           </div>
@@ -182,11 +180,11 @@ export default function HomePage() {
                       selectable: true,
                     }}
                   >
-                    <a onClick={(e) => e.preventDefault()}>
-                      <Space>
-                        {getCategory === null ? "Category" : getCategory}
-                      </Space>
-                    </a>
+                    {/* <a onClick={(e) => e.preventDefault()}> */}
+                    <Space>
+                      {getCategory === null ? "Category" : getCategory}
+                    </Space>
+                    {/* </a> */}
                   </Dropdown>
                 }
               />
