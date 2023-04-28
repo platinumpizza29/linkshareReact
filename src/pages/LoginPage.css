@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400&display=swap");
+
+.LoginPage {
+  margin: 0px;
+  padding: 0px;
+}
+
+.parentDiv {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.firstDiv {
+  font-family: "Prompt", sans-serif;
+  color: white;
+  text-align: start;
+  padding: 20px;
+  margin: 20px;
+  height: 93%;
+  width: 40vw;
+  background-color: #3c37fc;
+  border-radius: 30px;
+}
+
+.heading {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-top: 30%;
+}
+.heading,
+p {
+  color: #f2f3f8;
+}
+
+.secondDiv {
+  height: 100vh;
+  width: 60vw;
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.formLogin {
+  height: 80%;
+  width: 60%;
+  padding: 20px;
+  text-align: start;
+}
+
+.email,
+.password,
+.loginButton {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .firstDiv {
+    display: none;
+  }
+  .secondDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+}

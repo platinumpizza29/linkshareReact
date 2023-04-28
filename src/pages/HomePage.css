@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400&display=swap");
+
+.HomePage {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Prompt", sans-serif;
+  overflow-x: hidden;
+}
+
+.row {
+  height: 100vh;
+  width: 100vw;
+}
+
+#col1 {
+  background-color: #f2f3f8;
+  padding: 20px;
+}
+.userStat {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#col2 {
+  background-color: #f2f3f8;
+  padding: 20px;
+}
+
+.headerDiv {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#heading {
+  margin-left: 20px;
+}
+
+.feedCards {
+  margin-top: 20px;
+}
+
+#postCard {
+  margin-top: 20px;
+}
+
+#col3 {
+  background-color: #f2f3f8;
+}
+
+@media screen and (max-width: 600px) {
+  #col1 {
+    display: none;
+  }
+  #col2 {
+    padding: 20px;
+  }
+  #col3 {
+    display: none;
+  }
+}
