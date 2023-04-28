@@ -9,8 +9,9 @@ function App() {
     <Router>
       <Routes>
         <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
         </Route>
+        <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
